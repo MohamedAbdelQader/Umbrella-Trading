@@ -1,0 +1,97 @@
+﻿
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <link href="~/LoginAndRegister.css" rel="stylesheet" />
+    <title>Register</title>
+</head>
+<body>
+<section class="bg-image gradient-custom-3" 
+  style="background-size:cover;background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp'); height:1000px;">
+  <div class=" mask d-flex align-items-center   ">
+    <div class="container  ">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 6">
+          <div class="card "  style="border-radius: 15px;box-shadow: 10px 10px 50px grey !important;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-4">Create an account Vendor</h2>
+
+              <form asp-action="Create" asp-controller="UseAsVendor" method="post" enctype="multipart/form-data">
+                <div class="d-flex justify-content-around align-content-center">
+                  <div class="border-3 border-dark">
+                  <div class="form-outline mb-2">
+            <label for="NameEnglish">Name English </label>
+            <input type="text" name="NameEn" id="NameEnglish"  class="form-control form-control-lg"  />
+            </div>
+
+                <div class="form-outline mb-2">
+                   <label for="NameAr">Name Arabic  </label>
+                    <input type="text" name="NameAr" class="form-control form-control-lg" id="NameAr"/>
+                </div>
+
+                <div class="form-outline mb-2">
+                 <label for="Email">Email  </label>
+                       <input type="text" name="Email" class="form-control form-control-lg" id="Email"/>
+                </div>
+
+                <div class="form-outline mb-2">
+               <label for="PasswordHash">Password  </label>
+                 <input type="password" name="Password" class="form-control form-control-lg" id="PasswordHash"/>
+                </div>
+
+               
+                <div class="form-outline mb-2">
+               <label for="Country">Country  </label>
+                <input type="text" name="Country"  class="form-control form-control-lg" id="Country"/>
+                </div>
+                </div>
+                <div>
+                <div class="form-outline mb-2">
+               <label for="City">City  </label>
+                <input type="text" name="City"  class="form-control form-control-lg" id="City"/>
+                </div>
+                
+                <div class="form-outline mb-2">
+               <label for="Street">Street  </label>
+                <input type="text" name="Street"  class="form-control form-control-lg" id="Street"/>
+                </div>
+
+
+                 <div class="form-outline mb-2">
+               <label for="Phones">Phones  </label>
+                <input type="text" name="Phones"  class="form-control form-control-lg" id="Phones"/>
+                </div>
+               
+                  <input type="text" name="Role" value="@ViewBag.Roles" hidden readonly />
+                  <div class="form-outline mb-2">
+        <label for="uploadedimg">Image  </label>
+        <input type="file" name="uploadedimg"  class="form-control form-control-lg" id="uploadedimg"/>
+                 <div class="align-items-center d-flex flex-md-column mt-2">
+                 <input type="submit"  class="btn btn-success  btn-block btn-lg gradient-custom-4 text-body" value="Register"  />
+                   </div>
+                   </div>
+                <p class="text-center text-muted mt-2 mb-0">Have already an account? <a href="~/SignInMvc"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+    </div>
+               
+                 </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>

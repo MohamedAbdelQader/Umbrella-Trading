@@ -1,0 +1,69 @@
+@using UmbrellaTrading.ViewModels;
+@using UmbrellaTrading.Models;
+@using Microsoft.AspNetCore.Identity
+@model List<ProductViewModel>
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+@inject UserManager<User> userManager
+
+
+
+
+@{
+    Layout = "_VendorLayout";
+}
+
+
+<div class="card mb-4">
+
+
+
+
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th scope="col">Name English</th>
+                    <th scope="col">Name Arabic</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">VendorName</th>
+                    <th scope="col">IsDeleted</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+            @{
+                var user = await userManager.FindByNameAsync(User.Identity.Name);
+            }
+            @if (user.IsDeleted == false)
+            {
+                @foreach (var p in Model)
+                {
+                    if (p.IsDeleted == false && (p.Status == ProductStatus.accepted || p.Status == ProductStatus.pending))
+                    {
+                        <tr>
+                            <td>@p.NameEn</td>
+                            <td>@p.NameAr</td>
+                            <td>@p.Price</td>
+                            <td>@p.Category</td>
+                            <td>@p.Description</td>
+                            <td>@p.Quantity</td>
+                            <td>@p.VendorName</td>
+                            <td><a asp-action="DeleteVendor" asp-controller="Product" asp-route-ID="@p.ID" class="btn btn-danger">Delete</a></td>
+                            <td><a asp-action="Update" asp-controller="Product" asp-route-id="@p.ID" class="btn btn-danger">Edit</a></td>
+                        </tr>
+                    }
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+

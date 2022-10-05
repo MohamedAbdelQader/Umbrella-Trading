@@ -1,0 +1,88 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@using UmbrellaTrading.Models
+@using UmbrellaTrading.ViewModels;
+@model List<ProductViewModel>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th scope="col">NameEn</th>
+                    <th scope="col">NameAr</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">VendorName</th>
+                    <th scope="col">IsDeleted</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+
+                        <td>@user.NameEn</td>
+                        <td>@user.NameAr</td>
+                        <td>@user.Category</td>
+                        <td>@user.Description</td>
+                        <td>@user.Price</td>
+                        <td>@user.Quantity</td>
+                        <td>@user.VendorName</td>
+
+                        <td>
+                            @if (@user.IsDeleted == true)
+                            {
+                                <a asp-action="Delete" asp-controller="Product"
+                           asp-route-Id="@user.ID"
+                           class="btn btn-primary">Not Activate</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Delete" asp-controller="Product"
+                           asp-route-Id="@user.ID"
+                           class="btn btn-danger">Active</a>
+                            }
+                        </td>
+                        @*  <td><a asp-action="Update" asp-controller="Product" asp-route-Id=@user.ID >Edit</a></td>*@
+
+                        <td>
+                            @if (@user.Status == ProductStatus.pending)
+                            {
+                                <a asp-action="AcceptProduct" asp-controller="Product"
+                           asp-route-ID="@user.ID"
+                           class="btn btn-primary">Pending</a>
+                            }
+                            else if (@user.Status == ProductStatus.accepted)
+                            {
+
+                                <a asp-action="AcceptProduct" asp-controller="Product"
+                           asp-route-ID="@user.ID"
+                           class="btn btn-success">Accepted</a>
+                            }
+                            else
+                            {
+                                <a asp-action="AcceptProduct" asp-controller="Product"
+                           asp-route-ID="@user.ID"
+                           class="btn btn-danger">Rejected</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
